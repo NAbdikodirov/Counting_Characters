@@ -1,0 +1,71 @@
+//Importing packages
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.JPanel;
+
+//The Class CharacterCount.
+public class CharacterCount {
+    public static void main(String args[]) {
+        JFrame frame = new JFrame("Character Operations");
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        
+        // Creating text area, text field, label, button
+        JLabel label = new JLabel("Number of Characters");
+        JTextArea textArea = new JTextArea();
+        textArea.setRows(10);
+        textArea.setColumns(40);
+        JTextField textField = new JTextField();
+        textField.setColumns(5);
+        JButton countBtn = new JButton();
+        countBtn.setText("Count Characters");
+
+        JButton revers = new JButton();
+        revers.setText("Reverse String");
+        
+        // adding text area, text field, label, button
+        panel.add(textArea);
+        panel.add(label);
+        panel.add(textField);
+        panel.add(countBtn);
+        panel.add(revers);
+        frame.add(panel);
+        
+        // adding Listener in button with anonymous inner class
+        countBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txt = textArea.getText();
+                if(txt.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter string in text area", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    textField.setText(""+txt.length());
+                }
+            }
+        });
+        
+        // adding Listener in button with anonymous inner class
+        revers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txt = textArea.getText();
+                if(txt.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter string in text area", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    StringBuilder input = new StringBuilder(txt);
+                    textArea.setText(input.reverse().toString());
+                }
+            }
+        });
+        frame.setSize(500, 300);
+        frame.setResizable(true);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
